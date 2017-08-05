@@ -3,6 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import dataService from './services/dataService';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+let data = [];
+dataService.getReactStylingLibraries().then(response => {
+  data = response;
+});
+
+ReactDOM.render(<App data={data} />, document.getElementById('root'));
 registerServiceWorker();

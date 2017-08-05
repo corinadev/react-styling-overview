@@ -1,0 +1,4 @@
+[
+  { "name": "css-loader", "repository": "webpack-contrib/css-loader" },
+  { "name": "styled-components", "repository": "styled-components/styled-components" }
+]
