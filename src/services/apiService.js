@@ -1,5 +1,5 @@
-const getFromAPI = (url) => {
-  return fetch(url)
+const getFromAPI = (url, options) => {
+  return fetch(url, options || {})
     .then(response => {
       return response.json();
     })
@@ -25,10 +25,17 @@ export default {
 
   /**
    * Retrieve Github project information (stargazers, date created etc)
+   *
+   * Send extra header to tell Github to also return "topics" for the repo
+   * https://developer.github.com/v3/repos/#list-all-topics-for-a-repository
    * @param packageGithubRepo
    */
   getGithubRepoDetails: (packageGithubRepo) => {
-    return getFromAPI(`http://api.github.com/repos/${packageGithubRepo}`);
+    return getFromAPI(`http://api.github.com/repos/${packageGithubRepo}`, {
+      headers: new Headers({
+        "Accept": "application/vnd.github.mercy-preview+json"
+      })
+    });
   },
 
   /**

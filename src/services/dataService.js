@@ -12,16 +12,7 @@ function getLibraryInformation(library) {
     const npmStats = result[1];
     const githubRepo = result[2];
 
-    return new Library({
-      version: packageJson.version,
-      name: packageJson.name,
-      author: packageJson.author,
-      description: packageJson.description,
-      downloads: npmStats.downloads,
-      repository: library.repository,
-      stars: githubRepo.watchers_count,
-      createdAt: githubRepo.created_at
-    })
+    return new Library(library, packageJson, npmStats, githubRepo);
   });
 }
 

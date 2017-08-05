@@ -1,4 +1,10 @@
 [
   { "name": "css-loader", "repository": "webpack-contrib/css-loader" },
-  { "name": "styled-components", "repository": "styled-components/styled-components" }
+  { "name": "styled-components", "repository": "styled-components/styled-components" },
+  { "name": "glamorous", "repository": "paypal/glamorous" },
+  { "name": "aphrodite", "repository": "Khan/aphrodite" },
+  { "name": "jsxstyle", "repository": "smyte/jsxstyle" },
+  { "name": "jss", "repository": "cssinjs/jss" },
+  { "name": "radium", "repository": "FormidableLabs/radium" },
+  { "name": "postcss-modules", "repository": "css-modules/postcss-modules" }
 ]
