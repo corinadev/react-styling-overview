@@ -31,7 +31,7 @@ export default {
    * @param packageGithubRepo
    */
   getGithubRepoDetails: (packageGithubRepo) => {
-    return getFromAPI(`http://api.github.com/repos/${packageGithubRepo}`, {
+    return getFromAPI(`https://api.github.com/repos/${packageGithubRepo}`, {
       headers: new Headers({
         "Accept": "application/vnd.github.mercy-preview+json"
       })
