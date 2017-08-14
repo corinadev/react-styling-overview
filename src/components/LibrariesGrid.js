@@ -8,32 +8,33 @@ const numberFormat = (value) => (parseInt(value, 10).toLocaleString());
 const columns = [
   { Header: 'Name',
     accessor: 'name',
-    Cell: (library) => (
-      <a href={library.getGithubUrl()} target='_blank'>
-        {library.name}
-      </a>)
+    Cell: (row) => (
+      <a href={row.original.getGithubUrl()} target='_blank'>
+        {row.original.name}
+      </a>
+    )
   },
   { Header: 'Latest version', accessor: 'version' },
   { Header: 'Created at',
     accessor: 'createdAt',
-    Cell: (library) => (dateFormat(library.createdAt))},
+    Cell: (row) => (dateFormat(row.original.createdAt))},
   { Header: 'Description', accessor: 'description' },
   { Header: 'Author', accessor: 'author' },
   { Header: 'NPM Downloads',
     accessor: 'downloads',
-    Cell: (library) => (numberFormat(library.downloads))
+    Cell: (row) => (numberFormat(row.original.downloads))
   },
   { Header: 'Github stargazers',
     accessor: 'stars',
-    Cell: (library) => (numberFormat(library.stars))
+    Cell: (row) => (numberFormat(row.original.stars))
   },
   {
     Header: 'Topics',
     accessor: 'topics',
     minWidth: 300,
-    Cell: (library) => (library.topics ? library.topics.join(', ') : ''),
-    filterMethod: (filter, library) => {
-      return library.topics && library.topics.indexOf(filter.value) !== -1;
+    Cell: (row) => (row.original.topics ? row.original.topics.join(', ') : ''),
+    filterMethod: (filter, row) => {
+      return row.topics && row.topics.indexOf(filter.value) !== -1;
     }
   }
 ];
