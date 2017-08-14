@@ -31,7 +31,7 @@ const columns = [
     Header: 'Topics',
     id: 'topics',
     minWidth: 300,
-    accessor: (library) => (library.topics.join(', ')),
+    accessor: (library) => (library.topics ? library.topics.join(', ') : ''),
     filterMethod: (filter, library) => {
       return library.topics.indexOf(filter.value) !== -1;
     }
