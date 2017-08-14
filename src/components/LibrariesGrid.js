@@ -3,7 +3,7 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css'
 
 const dateFormat = (value) => (new Date(value).toLocaleDateString("en-US"));
-const numberFormat = (value) => (parseInt(value).toLocaleString());
+const numberFormat = (value) => (parseInt(value, 10).toLocaleString());
 
 const columns = [
   { Header: 'Name',
