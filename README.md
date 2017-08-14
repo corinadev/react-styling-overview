@@ -4,14 +4,16 @@
 React component styling libraries overview
 ===
 
-List of component styling libraries with live information for each regarding:
+See it live at: https://ucorina.github.io/react-styling-overview/
+
+Contains a list of component styling libraries with live information for each regarding:
 * number of downloads from NPM
 * number of stargazers on Github
 * date created
 
 Aims to make it easier to see how popular each library is, how many projects use it.
 
-To start, just run:
+To start locally, just run:
 
 ```
 yarn start
