@@ -1,0 +1,10 @@
+language: node_js
+
+deploy:
+  provider: pages
+  target_branch: gh-pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: build
+  on:
+    branch: develop
