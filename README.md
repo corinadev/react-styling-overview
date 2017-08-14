@@ -1,3 +1,6 @@
+![Build status on master](https://travis-ci.org/ucorina/react-styling-overview.svg?branch=master)
+
+
 React component styling libraries overview
 ===
 
