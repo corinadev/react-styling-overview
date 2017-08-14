@@ -1,4 +1,4 @@
-import dataService from './DataService';
+import dataService from './dataService';
 
 describe('list of react libraries', () => {
   let data = [];
