@@ -9,6 +9,9 @@ const getFromAPI = (url, options) => {
         return {};
       }
     })
+    .then((responseJson) => {
+      return responseJson;
+    })
     .catch((error) => {
       console.error(error);
     });

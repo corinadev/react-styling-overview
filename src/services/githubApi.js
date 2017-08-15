@@ -15,9 +15,7 @@ class GithubRepositoryInfo {
   }
 }
 
-const cacheResponse = (url, response) => {
-  let lastModified = response.headers.get('Last-Modified');
-  let data: GithubRepositoryInfo = response.json();
+const cacheResponse = (url, lastModified, data: GithubRepositoryInfo) => {
   let cachedItem = JSON.stringify({
     data: data,
     lastModified: lastModified
@@ -48,8 +46,14 @@ const getFromAPIAndCacheResponse = (url, options, lastModified) => {
       }
 
       if(response.status === 200) {
-        cacheResponse(url, response);
+        // Resource was changed, so update the cache
+        let lastModified = response.headers.get('Last-Modified');
+        return response.json().then((responseJson) => {
+          cacheResponse(url, lastModified, responseJson);
+          return responseJson;
+        });
       }
+
       return getRepositoryInfoFromCache(url);
     })
     .catch((error) => {

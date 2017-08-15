@@ -28,7 +28,7 @@ describe('get repo details from github', () => {
         ok: true,
         status: 200,
         json: function() {
-          return { name: 'React' }
+          return new Promise((resolve) => { resolve({ name: 'React' })})
         }
       });
     }));
@@ -102,7 +102,7 @@ describe('gets repo details from cache', () => {
           ok: true,
           status: 200,
           json: function() {
-            return { name: 'React new' }
+            return new Promise((resolve) => { resolve({ name: 'React new' })})
           }
         });
       }));
