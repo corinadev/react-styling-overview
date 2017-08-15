@@ -9,7 +9,7 @@ const columns = [
   { Header: 'Name',
     accessor: 'name',
     Cell: (row) => (
-      <a href={row.original.getGithubUrl()} target='_blank'>
+      <a href={row.original.getGithubUrl()} target='_blank' rel="noopener noreferrer">
         {row.original.name}
       </a>
     )

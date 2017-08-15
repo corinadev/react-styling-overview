@@ -26,7 +26,7 @@ class App extends Component {
           </a>
         </div>
         <footer>
-          Created by <a href='https://twitter.com/ucorina28' target='_blank'>@ucorina28</a>
+          Created by <a href='https://twitter.com/ucorina28' target='_blank' rel="noopener noreferrer">@ucorina28</a>
         </footer>
       </div>
     );
