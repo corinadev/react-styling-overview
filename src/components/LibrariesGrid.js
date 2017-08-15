@@ -2,7 +2,7 @@ import React from 'react';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css'
 
-const dateFormat = (value) => (new Date(value).toLocaleDateString("en-US"));
+const dateFormat = (value) => (value ? new Date(value).toLocaleDateString("en-US") : '');
 const numberFormat = (value) => (parseInt(value, 10).toLocaleString());
 
 const columns = [
@@ -18,6 +18,9 @@ const columns = [
   { Header: 'Created at',
     accessor: 'createdAt',
     Cell: (row) => (dateFormat(row.original.createdAt))},
+  { Header: 'Updated at',
+    accessor: 'updatedAt',
+    Cell: (row) => (dateFormat(row.original.updatedAt))},
   { Header: 'Description', accessor: 'description' },
   { Header: 'Author', accessor: 'author' },
   { Header: 'NPM Downloads',

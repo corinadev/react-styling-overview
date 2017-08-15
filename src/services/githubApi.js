@@ -2,12 +2,14 @@
 
 class GithubRepositoryInfo {
   created_at: string;
+  updated_at: string;
   watchers_count: number;
   topics: string[];
 
   constructor(data) {
     data = data || {};
-    this.created_at = data.created_at || new Date(0).toISOString();
+    this.created_at = data.created_at || null;
+    this.updated_at = data.updated_at || null;
     this.watchers_count = data.watchers_count || 0;
     this.topics = data.topics || [];
   }
