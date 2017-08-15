@@ -1,3 +1,5 @@
+import githubApi from './githubApi';
+
 const getFromAPI = (url, options) => {
   return fetch(url, options || {})
     .then(response => {
@@ -31,11 +33,7 @@ export default {
    * @param packageGithubRepo
    */
   getGithubRepoDetails: (packageGithubRepo) => {
-    return getFromAPI(`https://api.github.com/repos/${packageGithubRepo}`, {
-      headers: new Headers({
-        "Accept": "application/vnd.github.mercy-preview+json"
-      })
-    });
+    return githubApi.getRepoDetails(packageGithubRepo);
   },
 
   /**
