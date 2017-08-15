@@ -2,8 +2,9 @@
   "name": "react-styling",
   "version": "0.1.0",
   "private": true,
-  "homepage" : "https://ucorina.github.io/react-styling-overview",
+  "homepage": "https://ucorina.github.io/react-styling-overview",
   "dependencies": {
+    "flow-bin": "^0.52.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-scripts": "1.0.10",
@@ -13,7 +14,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "flow": "flow"
   },
   "devDependencies": {}
 }
