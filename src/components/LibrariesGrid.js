@@ -45,6 +45,7 @@ const LibrariesGrid = ({ data }) => (
     columns={columns}
     filterable
     resizable
+    defaultSorted={[{ id: 'downloads', desc: true }]}
   />
 );
 
