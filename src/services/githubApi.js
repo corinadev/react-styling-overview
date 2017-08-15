@@ -1,10 +1,32 @@
+// @flow
+
+class GithubRepositoryInfo {
+  created_at: string;
+  watchers_count: number;
+  topics: string[];
+
+  constructor(data) {
+    data = data || {};
+    this.created_at = data.created_at || new Date(0).toISOString();
+    this.watchers_count = data.watchers_count || 0;
+    this.topics = data.topics || [];
+  }
+}
+
 const cacheResponse = (url, response) => {
   let lastModified = response.headers.get('Last-Modified');
-  let data = response.json();
-  localStorage.setItem(url, {
+  let data: GithubRepositoryInfo = response.json();
+  let cachedItem = JSON.stringify({
     data: data,
     lastModified: lastModified
   });
+  localStorage.setItem(url, cachedItem);
+};
+
+const getRepositoryInfoFromCache = (url) => {
+  let cache = localStorage.getItem(url);
+  let info = JSON.parse(cache);
+  return info.data;
 };
 
 const getFromAPIAndCacheResponse = (url, options, lastModified) => {
@@ -19,14 +41,14 @@ const getFromAPIAndCacheResponse = (url, options, lastModified) => {
 
   return fetch(url, options || {})
     .then(response => {
-      if(response.status === 304) {
-        let cache = localStorage.getItem(url);
-        return cache.data;
+      if(!response.ok) {
+        return new GithubRepositoryInfo();
       }
-      else {
+
+      if(response.status === 200) {
         cacheResponse(url, response);
-        return response.json();
       }
+      return getRepositoryInfoFromCache(url);
     })
     .catch((error) => {
       console.error(error);
@@ -41,7 +63,8 @@ const getCachedResponse = (url, options) => {
   }
 
   // If item is already cached, check if we need to refresh
-  return getFromAPIAndCacheResponse(url, options, cache.lastModified);
+  let info = JSON.parse(cache);
+  return getFromAPIAndCacheResponse(url, options, info.lastModified);
 };
 
 export default {

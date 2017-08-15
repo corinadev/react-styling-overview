@@ -1,3 +1,5 @@
+// @flow
+
 export default class Library {
   name;
   version;
@@ -9,9 +11,9 @@ export default class Library {
   repository;
   topics;
 
-  constructor(localJson, packageJson, npmStats, githubRepo) {
+  constructor(localJson, packageJson, npmStats, githubRepo: GithubRepositoryInfo) {
     this.version = packageJson.version;
-    this.name = packageJson.name;
+    this.name = packageJson.name || localJson.name;
 
     this.author = packageJson.author ?
                       typeof packageJson.author === 'string' ?

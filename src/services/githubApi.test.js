@@ -32,6 +32,10 @@ describe('get repo details from github', () => {
         }
       });
     }));
+    global.localStorage.getItem.mockReturnValue(JSON.stringify({
+      data: { name: 'React' },
+      lastModified: LAST_MODIFIED
+    }));
   });
 
   it('gets the data', async () => {
@@ -41,25 +45,22 @@ describe('get repo details from github', () => {
 
   it('saves it to the cache', async () => {
     const response = await githubApi.getRepoDetails('facebook/react');
-    expect(global.localStorage.setItem).toBeCalledWith("https://api.github.com/repos/facebook/react", {
+    expect(global.localStorage.setItem).toBeCalledWith("https://api.github.com/repos/facebook/react", JSON.stringify({
       data: response,
       lastModified: LAST_MODIFIED
-    });
+    }));
   });
 
 });
 
 describe('gets repo details from cache', () => {
 
-  beforeEach(() => {
-    global.localStorage.getItem.mockReturnValue({
-      data: { name: 'React' },
-      lastModified: 'Thu, 05 Jul 2012 15:31:30 GMT'
-    });
-  });
-
   describe('resource not modified', () => {
     beforeEach(() => {
+      global.localStorage.getItem.mockReturnValue(JSON.stringify({
+        data: { name: 'React' },
+        lastModified: LAST_MODIFIED
+      }));
       global.fetch.mockReturnValueOnce(new Promise((resolve) => {
         resolve({
           headers: new Headers({
@@ -85,6 +86,14 @@ describe('gets repo details from cache', () => {
   describe('resource modified', () => {
     const UPDATED_MODIFIED_DATE = 'Thu, 05 Jul 2015 15:31:30 GMT';
     beforeEach(() => {
+      global.localStorage.getItem.mockReturnValueOnce(JSON.stringify({
+        data: { name: 'React' },
+        lastModified: LAST_MODIFIED
+      }));
+      global.localStorage.getItem.mockReturnValueOnce(JSON.stringify({
+        data: { name: 'React new' },
+        lastModified: UPDATED_MODIFIED_DATE
+      }));
       global.fetch.mockReturnValue(new Promise((resolve) => {
         resolve({
           headers: new Headers({
@@ -107,10 +116,10 @@ describe('gets repo details from cache', () => {
 
     it('saves it to cache', async () => {
       const response = await githubApi.getRepoDetails('facebook/react');
-      expect(global.localStorage.setItem).toBeCalledWith("https://api.github.com/repos/facebook/react", {
+      expect(global.localStorage.setItem).toBeCalledWith("https://api.github.com/repos/facebook/react", JSON.stringify({
         data: response,
         lastModified: UPDATED_MODIFIED_DATE
-      });
+      }));
     });
 
   });

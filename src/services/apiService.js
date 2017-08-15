@@ -3,10 +3,11 @@ import githubApi from './githubApi';
 const getFromAPI = (url, options) => {
   return fetch(url, options || {})
     .then(response => {
-      return response.json();
-    })
-    .then((responseJson) => {
-      return responseJson;
+      if(response.ok) {
+        return response.json();
+      } else {
+        return {};
+      }
     })
     .catch((error) => {
       console.error(error);
