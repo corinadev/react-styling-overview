@@ -15,10 +15,14 @@ class GithubRepositoryInfo {
   }
 }
 
+// 1 day
+const CACHE_INTERVAL = 24 * 60 * 60 * 1000;
+
 const cacheResponse = (url, lastModified, data: GithubRepositoryInfo) => {
   let cachedItem = JSON.stringify({
     data: data,
-    lastModified: lastModified
+    lastModified: lastModified,
+    lastRequested: new Date().getTime()
   });
   localStorage.setItem(url, cachedItem);
 };
@@ -27,6 +31,10 @@ const getRepositoryInfoFromCache = (url) => {
   let cache = localStorage.getItem(url);
   let info = JSON.parse(cache);
   return info.data;
+};
+
+const isLocalCacheStillValid = (lastRequested: number) => {
+  return new Date().getTime() - new Date(lastRequested).getTime() < CACHE_INTERVAL;
 };
 
 const getFromAPIAndCacheResponse = (url, options, lastModified) => {
@@ -70,6 +78,10 @@ const getCachedResponse = (url, options) => {
 
   // If item is already cached, check if we need to refresh
   let info = JSON.parse(cache);
+  if(info.lastRequested && isLocalCacheStillValid(info.lastRequested)) {
+    return getRepositoryInfoFromCache(url);
+  }
+
   return getFromAPIAndCacheResponse(url, options, info.lastModified);
 };
 

@@ -4,6 +4,7 @@ export default class Library {
   name;
   version;
   createdAt;
+  updatedAt;
   description;
   author;
   downloads;
@@ -26,6 +27,7 @@ export default class Library {
     this.repository = localJson.repository;
     this.stars = githubRepo.watchers_count;
     this.createdAt = githubRepo.created_at;
+    this.updatedAt = githubRepo.updated_at;
     this.topics = githubRepo.topics;
   }
 

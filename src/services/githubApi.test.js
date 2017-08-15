@@ -45,10 +45,15 @@ describe('get repo details from github', () => {
 
   it('saves it to the cache', async () => {
     const response = await githubApi.getRepoDetails('facebook/react');
-    expect(global.localStorage.setItem).toBeCalledWith("https://api.github.com/repos/facebook/react", JSON.stringify({
-      data: response,
-      lastModified: LAST_MODIFIED
-    }));
+    expect(global.localStorage.setItem).toBeCalled();
+
+    let params = global.localStorage.setItem.mock.calls[0];
+    expect(params[0]).toEqual("https://api.github.com/repos/facebook/react");
+
+    let cache = JSON.parse(params[1]);
+    expect(cache.data).toEqual(response);
+    expect(cache.lastModified).toEqual(LAST_MODIFIED);
+    expect(cache.lastRequested).toBeDefined();
   });
 
 });
@@ -116,10 +121,14 @@ describe('gets repo details from cache', () => {
 
     it('saves it to cache', async () => {
       const response = await githubApi.getRepoDetails('facebook/react');
-      expect(global.localStorage.setItem).toBeCalledWith("https://api.github.com/repos/facebook/react", JSON.stringify({
-        data: response,
-        lastModified: UPDATED_MODIFIED_DATE
-      }));
+      expect(global.localStorage.setItem).toBeCalled();
+
+      let params = global.localStorage.setItem.mock.calls[0];
+      expect(params[0]).toEqual("https://api.github.com/repos/facebook/react");
+      let cache = JSON.parse(params[1]);
+      expect(cache.data).toEqual(response);
+      expect(cache.lastModified).toEqual(UPDATED_MODIFIED_DATE);
+      expect(cache.lastRequested).toBeDefined();
     });
 
   });
