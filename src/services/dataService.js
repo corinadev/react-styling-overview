@@ -6,7 +6,7 @@ import { KEEP_CACHE_DURATION } from '../config';
 
 function getLibraryInformation(library) {
   return Promise.all([
-    apiService.getGithubPackageDetails(library.repository),
+    apiService.getGithubPackageDetails(library.repository, library.packageJson),
     apiService.getNpmPackageStats(library.name),
     apiService.getGithubRepoDetails(library.repository)
   ]).then(result => {
@@ -38,9 +38,9 @@ export default {
     return Promise
       .all(libraries
         .map(library => getLibraryInformation(library))
-      ).then((result) => {
-        cacheService.setCacheForLibrariesInfo(result);
-        return new Promise((resolve) => (resolve(resolve)));
+      ).then((data) => {
+        cacheService.setCacheForLibrariesInfo(data);
+        return new Promise((resolve) => (resolve(data)));
       });
   }
 }

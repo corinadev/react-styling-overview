@@ -4,6 +4,7 @@ import dataService from './services/dataService';
 import LibrariesGrid from './components/LibrariesGrid';
 
 let data = [];
+let isDataLoaded = false;
 
 class App extends Component {
   render() {
@@ -15,7 +16,7 @@ class App extends Component {
             <div>React styling libraries ordered by number of downloads and stars</div>
           </header>
           <div className='gridContainer'>
-            <LibrariesGrid data={data} />
+            <LibrariesGrid data={data} isLoading={!isDataLoaded} />
           </div>
           <a href="https://github.com/ucorina/react-styling-overview">
             <img style={{ position: 'absolute', top: 0, right: 0, border: 0}}
@@ -34,6 +35,7 @@ class App extends Component {
 
   componentDidMount() {
     dataService.getReactStylingLibraries().then(response => {
+      isDataLoaded = true;
       data = response;
       this.forceUpdate();
     });

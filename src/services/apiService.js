@@ -24,9 +24,10 @@ export default {
    * https://github.com/npm/registry/issues/110
    *
    * @param packageGithubRepo
+   * @param packageJson
    */
-  getGithubPackageDetails: (packageGithubRepo) => {
-    return getFromAPI(`https://raw.githubusercontent.com/${packageGithubRepo}/master/package.json`);
+  getGithubPackageDetails: (packageGithubRepo, packageJson = "master/package.json") => {
+    return getFromAPI(`https://raw.githubusercontent.com/${packageGithubRepo}/${packageJson}`);
   },
 
   /**

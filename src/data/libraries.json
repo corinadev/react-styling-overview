@@ -1,13 +1,11 @@
 [
   { 
     "name": "aphrodite", 
-    "repository": "Khan/aphrodite",
-    "categories": ["CSS in JS"]
+    "repository": "Khan/aphrodite"
   },
   {
     "name": "babel-plugin-css-in-js",
-    "repository": "martinandert/babel-plugin-css-in-js",
-    "categories": ["CSS in JS"]
+    "repository": "martinandert/babel-plugin-css-in-js"
   },
   {
     "name": "babel-plugin-pre-style",
@@ -15,8 +13,7 @@
   },
   {
     "name": "bloody-react-styled",
-    "repository": "bloodyowl/react-styled",
-    "categories": ["CSS in JS"]
+    "repository": "bloodyowl/react-styled"
   },
   {
     "name": "classy",
@@ -24,23 +21,19 @@
   },
   {
     "name": "csjs",
-    "repository": "rtsao/csjs",
-    "categories": [ "CSS in JS"]
+    "repository": "rtsao/csjs"
   },
   {
     "name": "css-constructor",
-    "repository": "siddharthkp/css-constructor",
-    "categories": [ "CSS in JS"]
+    "repository": "siddharthkp/css-constructor"
   }, 
   { 
     "name": "css-loader", 
-    "repository": "webpack-contrib/css-loader",
-    "categories": [ "CSS Modules"]
+    "repository": "webpack-contrib/css-loader"
   },
   {
     "name": "css-ns",
-    "repository": "jareware/css-ns",
-    "categories": [ "CSS in JS"]
+    "repository": "jareware/css-ns"
   },
   {
     "name": "cssobj",
@@ -52,13 +45,11 @@
   },
   {
     "name": "emotion",
-    "repository": "https://github.com/tkh44/emotion",
-    "categories": ["CSS in JS"]
+    "repository": "tkh44/emotion"
   },
   {
     "name": "es-css-modules",
-    "repository": "jacobp100/es-css-modules",
-    "categories": ["CSS Modules"]
+    "repository": "jacobp100/es-css-modules"
   },
   {
     "name": "glamor",
@@ -101,10 +92,6 @@
     "repository": "FormidableLabs/radium" 
   },
   {
-    "name": "react-free-style",
-    "repository": "blakeembrey/react-free-style"
-  },
-  {
     "name": "react-inline",
     "repository": "martinandert/react-inline"
   },
@@ -114,16 +101,12 @@
   },
   {
     "name": "react-inline-style",
-    "repository": "dowjones/react-inline-style"
+    "repository": "dowjones/react-inline-style",
+    "packageJson": "gh-pages/package.json"
   },
   {
     "name": "react-jss",
     "repository": "cssinjs/react-jss"
-  },
-  {
-    "name": "react-look",
-    "repository": "rofrischmann/react-look",
-    "deprecated": true
   },
   {
     "name": "fela",
@@ -132,11 +115,6 @@
   {
     "name": "react-statics-styles",
     "repository": "elierotenberg/react-statics-styles"
-  },
-  {
-    "name": "react-style",
-    "repository": "js-next/react-style",
-    "unmaintained": true
   },
   {
     "name": "react-css-builder",
@@ -151,16 +129,12 @@
     "repository": "gajus/react-css-modules"
   },
   {
-    "name": "react-css-om",
+    "name": "react-cssom",
     "repository": "mbasso/react-cssom"
   },
   {
     "name": "cxs",
     "repository": "jxnblk/cxs"
-  },
-  {
-    "name": "react-fela",
-    "repository": "rofrischmann/fela"
   },
   {
     "name": "react-free-style",
@@ -179,7 +153,7 @@
     "repository": "nick/react-styl"
   },
   {
-    "name": "react-stylable",
+    "name": "react-styleable",
     "repository": "pluralsight/react-styleable"
   },
   {
@@ -199,11 +173,11 @@
     "repository": "casesandberg/reactcss"
   },
   {
-    "name": "ReactShadow",
+    "name": "react-shadow",
     "repository": "Wildhoney/ReactShadow"
   },
   {
-    "name": "rstyles",
+    "name": "restyles",
     "repository": "tkh44/restyles"
   },
   {
@@ -212,7 +186,8 @@
   },
   {
     "name": "smart-css",
-    "repository": "hackhat/smart-css"
+    "repository": "hackhat/smart-css",
+    "packageJson": "prod/package.json"
   },
   {
     "name": "stilr",

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css'
+import libraries from '../data/libraries.json';
 
 const dateFormat = (value) => (value ? new Date(value).toLocaleDateString("en-US") : '');
 const numberFormat = (value) => (parseInt(value, 10).toLocaleString());
@@ -8,8 +9,12 @@ const numberFormat = (value) => (parseInt(value, 10).toLocaleString());
 const columns = [
   { Header: 'Name',
     accessor: 'name',
+    minWidth: 150,
     Cell: (row) => (
-      <a href={row.original.getGithubUrl()} target='_blank' rel="noopener noreferrer">
+      <a href={row.original.getGithubUrl()}
+         target='_blank' rel="noopener noreferrer"
+         title={row.original.description}
+      >
         {row.original.name}
       </a>
     )
@@ -18,10 +23,9 @@ const columns = [
   { Header: 'Created at',
     accessor: 'createdAt',
     Cell: (row) => (dateFormat(row.original.createdAt))},
-  { Header: 'Updated at',
-    accessor: 'updatedAt',
-    Cell: (row) => (dateFormat(row.original.updatedAt))},
-  { Header: 'Description', accessor: 'description' },
+  { Header: 'Last pushed at',
+    accessor: 'pushedAt',
+    Cell: (row) => (dateFormat(row.original.pushedAt))},
   { Header: 'Author', accessor: 'author' },
   { Header: 'NPM Downloads',
     accessor: 'downloads',
@@ -42,12 +46,15 @@ const columns = [
   }
 ];
 
-const LibrariesGrid = ({ data }) => (
+const LibrariesGrid = ({ data, isLoading }) => (
   <ReactTable
     data={data}
     columns={columns}
+    loading={isLoading}
     filterable
     resizable
+    showPagination={false}
+    defaultPageSize={libraries.length}
     defaultSorted={[{ id: 'downloads', desc: true }]}
   />
 );
