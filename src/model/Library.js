@@ -1,7 +1,10 @@
+// @flow
+
 export default class Library {
   name;
   version;
   createdAt;
+  pushedAt;
   description;
   author;
   downloads;
@@ -9,9 +12,9 @@ export default class Library {
   repository;
   topics;
 
-  constructor(localJson, packageJson, npmStats, githubRepo) {
+  constructor(localJson = {}, packageJson = {}, npmStats = {}, githubRepo: GithubRepositoryInfo = {}) {
     this.version = packageJson.version;
-    this.name = packageJson.name;
+    this.name = packageJson.name || localJson.name;
 
     this.author = packageJson.author ?
                       typeof packageJson.author === 'string' ?
@@ -24,7 +27,14 @@ export default class Library {
     this.repository = localJson.repository;
     this.stars = githubRepo.watchers_count;
     this.createdAt = githubRepo.created_at;
+    this.pushedAt = githubRepo.pushed_at;
     this.topics = githubRepo.topics;
+  }
+
+  static fromCache(data) {
+    let library = new Library();
+    Object.assign(library, data);
+    return library;
   }
 
   getGithubUrl() {

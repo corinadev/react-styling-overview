@@ -1,10 +1,232 @@
 [
-  { "name": "css-loader", "repository": "webpack-contrib/css-loader" },
-  { "name": "styled-components", "repository": "styled-components/styled-components" },
-  { "name": "glamorous", "repository": "paypal/glamorous" },
-  { "name": "aphrodite", "repository": "Khan/aphrodite" },
-  { "name": "jsxstyle", "repository": "smyte/jsxstyle" },
-  { "name": "jss", "repository": "cssinjs/jss" },
-  { "name": "radium", "repository": "FormidableLabs/radium" },
-  { "name": "postcss-modules", "repository": "css-modules/postcss-modules" }
+  { 
+    "name": "aphrodite", 
+    "repository": "Khan/aphrodite"
+  },
+  {
+    "name": "babel-plugin-css-in-js",
+    "repository": "martinandert/babel-plugin-css-in-js"
+  },
+  {
+    "name": "babel-plugin-pre-style",
+    "repository": "soluml/babel-plugin-pre-style"
+  },
+  {
+    "name": "bloody-react-styled",
+    "repository": "bloodyowl/react-styled"
+  },
+  {
+    "name": "classy",
+    "repository": "inturn/classy"
+  },
+  {
+    "name": "csjs",
+    "repository": "rtsao/csjs"
+  },
+  {
+    "name": "css-constructor",
+    "repository": "siddharthkp/css-constructor"
+  }, 
+  { 
+    "name": "css-loader", 
+    "repository": "webpack-contrib/css-loader"
+  },
+  {
+    "name": "css-ns",
+    "repository": "jareware/css-ns"
+  },
+  {
+    "name": "cssobj",
+    "repository": "cssobj/cssobj"
+  },
+  {
+    "name": "cssx-loader",
+    "repository": "krasimir/cssx"
+  },
+  {
+    "name": "emotion",
+    "repository": "tkh44/emotion"
+  },
+  {
+    "name": "es-css-modules",
+    "repository": "jacobp100/es-css-modules"
+  },
+  {
+    "name": "glamor",
+    "repository": "threepointone/glamor"
+  },
+  { 
+    "name": "glamorous", 
+    "repository": "paypal/glamorous" 
+  },
+  {
+    "name": "hyperstyles",
+    "repository": "colingourlay/hyperstyles"
+  },
+  {
+    "name": "i-css",
+    "repository": "irom-io/i-css"
+  },
+  {
+    "name": "j2c",
+    "repository": "j2css/j2c"
+  },
+  { 
+    "name": "jss", 
+    "repository": "cssinjs/jss" 
+  },
+  { 
+    "name": "jsxstyle", 
+    "repository": "smyte/jsxstyle" 
+  },
+  {
+    "name": "native-css",
+    "repository": "raphamorim/native-css"
+  },
+  {
+    "name": "pre-style",
+    "repository": "soluml/pre-style"
+  },
+  { 
+    "name": "radium", 
+    "repository": "FormidableLabs/radium" 
+  },
+  {
+    "name": "react-inline",
+    "repository": "martinandert/react-inline"
+  },
+  {
+    "name": "react-inline-css",
+    "repository": "RickWong/react-inline-css"
+  },
+  {
+    "name": "react-inline-style",
+    "repository": "dowjones/react-inline-style",
+    "packageJson": "gh-pages/package.json"
+  },
+  {
+    "name": "react-jss",
+    "repository": "cssinjs/react-jss"
+  },
+  {
+    "name": "fela",
+    "repository": "rofrischmann/fela"
+  },
+  {
+    "name": "react-statics-styles",
+    "repository": "elierotenberg/react-statics-styles"
+  },
+  {
+    "name": "react-css-builder",
+    "repository": "jhudson8/react-css-builder"
+  },
+  {
+    "name": "react-css-components",
+    "repository": "andreypopp/react-css-components"
+  },
+  {
+    "name": "react-css-modules",
+    "repository": "gajus/react-css-modules"
+  },
+  {
+    "name": "react-cssom",
+    "repository": "mbasso/react-cssom"
+  },
+  {
+    "name": "cxs",
+    "repository": "jxnblk/cxs"
+  },
+  {
+    "name": "react-free-style",
+    "repository": "blakeembrey/react-free-style"
+  },
+  {
+    "name": "react-in-style",
+    "repository": "ericwooley/react-in-style"
+  },
+  {
+    "name": "react-native-web",
+    "repository": "necolas/react-native-web"
+  },
+  {
+    "name": "react-styl",
+    "repository": "nick/react-styl"
+  },
+  {
+    "name": "react-styleable",
+    "repository": "pluralsight/react-styleable"
+  },
+  {
+    "name": "react-stylematic",
+    "repository": "rtsao/react-stylematic"
+  },
+  {
+    "name": "react-theme",
+    "repository": "azazdeaz/react-theme"
+  },
+  {
+    "name": "react-vstyle",
+    "repository": "fdecampredon/react-vstyle"
+  },
+  {
+    "name": "reactcss",
+    "repository": "casesandberg/reactcss"
+  },
+  {
+    "name": "react-shadow",
+    "repository": "Wildhoney/ReactShadow"
+  },
+  {
+    "name": "restyles",
+    "repository": "tkh44/restyles"
+  },
+  {
+    "name": "scope-styles",
+    "repository": "rtsao/scope-styles"
+  },
+  {
+    "name": "smart-css",
+    "repository": "hackhat/smart-css",
+    "packageJson": "prod/package.json"
+  },
+  {
+    "name": "stilr",
+    "repository": "kodyl/stilr"
+  },
+  {
+    "name": "style-it",
+    "repository": "buildbreakdo/style-it"
+  },
+  { 
+    "name": "styled-components", 
+    "repository": "styled-components/styled-components" 
+  },
+  {
+    "name": "styled-jsx",
+    "repository": "zeit/styled-jsx"
+  },
+  {
+    "name": "styletron-react",
+    "repository": "rtsao/styletron"
+  },
+  {
+    "name": "styling",
+    "repository": "andreypopp/styling"
+  },
+  {
+    "name": "superstyle",
+    "repository": "jxnblk/superstyle"
+  },
+  {
+    "name": "typestyle",
+    "repository": "typestyle/typestyle"
+  },
+  {
+    "name": "uranium",
+    "repository": "tuckerconnelly/uranium"
+  },
+  { 
+    "name": "postcss-modules", 
+    "repository": "css-modules/postcss-modules" 
+  }
 ]

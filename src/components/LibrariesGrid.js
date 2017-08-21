@@ -1,49 +1,61 @@
 import React from 'react';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css'
+import libraries from '../data/libraries.json';
 
-const dateFormat = (value) => (new Date(value).toLocaleDateString("en-US"));
+const dateFormat = (value) => (value ? new Date(value).toLocaleDateString("en-US") : '');
 const numberFormat = (value) => (parseInt(value, 10).toLocaleString());
 
 const columns = [
   { Header: 'Name',
-    id: 'name',
-    accessor: (library) => (
-      <a href={library.getGithubUrl()} target='_blank'>
-        {library.name}
-      </a>)
+    accessor: 'name',
+    minWidth: 150,
+    Cell: (row) => (
+      <a href={row.original.getGithubUrl()}
+         target='_blank' rel="noopener noreferrer"
+         title={row.original.description}
+      >
+        {row.original.name}
+      </a>
+    )
   },
   { Header: 'Latest version', accessor: 'version' },
   { Header: 'Created at',
-    id: 'createdAt',
-    accessor: (library) => (dateFormat(library.createdAt))},
-  { Header: 'Description', accessor: 'description' },
+    accessor: 'createdAt',
+    Cell: (row) => (dateFormat(row.original.createdAt))},
+  { Header: 'Last pushed at',
+    accessor: 'pushedAt',
+    Cell: (row) => (dateFormat(row.original.pushedAt))},
   { Header: 'Author', accessor: 'author' },
   { Header: 'NPM Downloads',
-    id: 'downloads',
-    accessor: (library) => (numberFormat(library.downloads))
+    accessor: 'downloads',
+    Cell: (row) => (numberFormat(row.original.downloads))
   },
   { Header: 'Github stargazers',
-    id: 'stars',
-    accessor: (library) => (numberFormat(library.stars))
+    accessor: 'stars',
+    Cell: (row) => (numberFormat(row.original.stars))
   },
   {
     Header: 'Topics',
-    id: 'topics',
+    accessor: 'topics',
     minWidth: 300,
-    accessor: (library) => (library.topics ? library.topics.join(', ') : ''),
-    filterMethod: (filter, library) => {
-      return library.topics.indexOf(filter.value) !== -1;
+    Cell: (row) => (row.original.topics ? row.original.topics.join(', ') : ''),
+    filterMethod: (filter, row) => {
+      return row.topics && row.topics.indexOf(filter.value) !== -1;
     }
   }
 ];
 
-const LibrariesGrid = ({ data }) => (
+const LibrariesGrid = ({ data, isLoading }) => (
   <ReactTable
     data={data}
     columns={columns}
+    loading={isLoading}
     filterable
     resizable
+    showPagination={false}
+    defaultPageSize={libraries.length}
+    defaultSorted={[{ id: 'downloads', desc: true }]}
   />
 );
 

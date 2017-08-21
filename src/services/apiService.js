@@ -1,7 +1,13 @@
+import githubApi from './githubApi';
+
 const getFromAPI = (url, options) => {
   return fetch(url, options || {})
     .then(response => {
-      return response.json();
+      if(response.ok) {
+        return response.json();
+      } else {
+        return {};
+      }
     })
     .then((responseJson) => {
       return responseJson;
@@ -18,9 +24,10 @@ export default {
    * https://github.com/npm/registry/issues/110
    *
    * @param packageGithubRepo
+   * @param packageJson
    */
-  getGithubPackageDetails: (packageGithubRepo) => {
-    return getFromAPI(`https://raw.githubusercontent.com/${packageGithubRepo}/master/package.json`);
+  getGithubPackageDetails: (packageGithubRepo, packageJson = "master/package.json") => {
+    return getFromAPI(`https://raw.githubusercontent.com/${packageGithubRepo}/${packageJson}`);
   },
 
   /**
@@ -31,11 +38,7 @@ export default {
    * @param packageGithubRepo
    */
   getGithubRepoDetails: (packageGithubRepo) => {
-    return getFromAPI(`https://api.github.com/repos/${packageGithubRepo}`, {
-      headers: new Headers({
-        "Accept": "application/vnd.github.mercy-preview+json"
-      })
-    });
+    return githubApi.getRepoDetails(packageGithubRepo);
   },
 
   /**
