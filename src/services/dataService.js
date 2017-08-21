@@ -1,6 +1,8 @@
 import apiService from './apiService';
 import libraries from '../data/libraries.json';
 import Library from '../model/Library';
+import cacheService from './cacheService';
+import { KEEP_CACHE_DURATION } from '../config';
 
 function getLibraryInformation(library) {
   return Promise.all([
@@ -16,8 +18,29 @@ function getLibraryInformation(library) {
   });
 }
 
+function getCachedLibraries() {
+  let cachedLibrariesInfo = cacheService.getCacheForLibrariesInfo();
+  return cachedLibrariesInfo.libraries.map((data) => (Library.fromCache(data)));
+}
+
+function isCacheStillValid() {
+  let cachedLibrariesInfo = cacheService.getCacheForLibrariesInfo();
+  return cachedLibrariesInfo
+    && (new Date().getTime() - new Date(cachedLibrariesInfo.lastCachedDate).getTime()) < KEEP_CACHE_DURATION;
+}
+
 export default {
-  getReactStylingLibraries: () => (
-    Promise.all(libraries.map( library => getLibraryInformation(library)))
-  )
+  getReactStylingLibraries: () => {
+    if(isCacheStillValid()) {
+      return Promise.resolve(getCachedLibraries());
+    }
+
+    return Promise
+      .all(libraries
+        .map(library => getLibraryInformation(library))
+      ).then((result) => {
+        cacheService.setCacheForLibrariesInfo(result);
+        return new Promise((resolve) => (resolve(resolve)));
+      });
+  }
 }

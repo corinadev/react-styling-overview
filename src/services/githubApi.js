@@ -15,74 +15,24 @@ class GithubRepositoryInfo {
   }
 }
 
-// 1 day
-const CACHE_INTERVAL = 24 * 60 * 60 * 1000;
-
-const cacheResponse = (url, lastModified, data: GithubRepositoryInfo) => {
-  let cachedItem = JSON.stringify({
-    data: data,
-    lastModified: lastModified,
-    lastRequested: new Date().getTime()
-  });
-  localStorage.setItem(url, cachedItem);
-};
-
-const getRepositoryInfoFromCache = (url) => {
-  let cache = localStorage.getItem(url);
-  let info = JSON.parse(cache);
-  return info.data;
-};
-
-const isLocalCacheStillValid = (lastRequested: number) => {
-  return new Date().getTime() - new Date(lastRequested).getTime() < CACHE_INTERVAL;
-};
-
-const getFromAPIAndCacheResponse = (url, options, lastModified) => {
+const getFromAPI = (url, options) => {
   options = options || {};
   if(!options.headers) {
     options.headers = new Headers();
   }
 
-  if(lastModified) {
-    options.headers.append('If-Modified-Since', lastModified);
-  }
-
   return fetch(url, options || {})
     .then(response => {
-      if(!response.ok) {
+      if(response.ok) {
+        return response.json();
+      } else {
         return new GithubRepositoryInfo();
       }
-
-      if(response.status === 200) {
-        // Resource was changed, so update the cache
-        let lastModified = response.headers.get('Last-Modified');
-        return response.json().then((responseJson) => {
-          cacheResponse(url, lastModified, responseJson);
-          return responseJson;
-        });
-      }
-
-      return getRepositoryInfoFromCache(url);
     })
+    .then(json => json)
     .catch((error) => {
       console.error(error);
     });
-};
-
-const getCachedResponse = (url, options) => {
-  let cache = localStorage.getItem(url);
-  if(!cache) {
-    // If item isn't cached, call the API and cache it
-    return getFromAPIAndCacheResponse(url, options);
-  }
-
-  // If item is already cached, check if we need to refresh
-  let info = JSON.parse(cache);
-  if(info.lastRequested && isLocalCacheStillValid(info.lastRequested)) {
-    return getRepositoryInfoFromCache(url);
-  }
-
-  return getFromAPIAndCacheResponse(url, options, info.lastModified);
 };
 
 export default {
@@ -95,7 +45,7 @@ export default {
    * @param packageGithubRepo
    */
   getRepoDetails: (packageGithubRepo) => {
-    return getCachedResponse(`https://api.github.com/repos/${packageGithubRepo}`, {
+    return getFromAPI(`https://api.github.com/repos/${packageGithubRepo}`, {
       headers: new Headers({
         "Accept": "application/vnd.github.mercy-preview+json"
       })

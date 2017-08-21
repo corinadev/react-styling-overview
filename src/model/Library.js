@@ -12,7 +12,7 @@ export default class Library {
   repository;
   topics;
 
-  constructor(localJson, packageJson, npmStats, githubRepo: GithubRepositoryInfo) {
+  constructor(localJson = {}, packageJson = {}, npmStats = {}, githubRepo: GithubRepositoryInfo = {}) {
     this.version = packageJson.version;
     this.name = packageJson.name || localJson.name;
 
@@ -29,6 +29,12 @@ export default class Library {
     this.createdAt = githubRepo.created_at;
     this.updatedAt = githubRepo.updated_at;
     this.topics = githubRepo.topics;
+  }
+
+  static fromCache(data) {
+    let library = new Library();
+    Object.assign(library, data);
+    return library;
   }
 
   getGithubUrl() {

@@ -13,9 +13,13 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test --env=jsdom --coverage",
     "eject": "react-scripts eject",
     "flow": "flow"
+  },
+  "jest": {
+    "collectCoverageFrom" : ["**/*.{js,jsx}", "!**/node_modules/**", "!**/vendor/**"],
+    "coverageReporters": ["json", "html"]
   },
   "devDependencies": {}
 }
